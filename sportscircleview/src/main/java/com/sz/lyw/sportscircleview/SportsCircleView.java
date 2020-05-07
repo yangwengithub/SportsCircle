@@ -1,5 +1,6 @@
 package com.sz.lyw.sportscircleview;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -31,6 +32,18 @@ public class SportsCircleView extends View {
 
     public SportsCircleView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+    }
+
+
+    public void start(float progressNum) {
+
+        progressNum = progressNum > 100 ? 100 : progressNum;
+        // 最后三个参数 0, progress + 20, progress，其中progress + 20是多绘制20%再回弹回来
+        //如果不需要回弹效果可以删除：ObjectAnimator.ofFloat(sc_animation, "progress", 0, progress);
+        ObjectAnimator progressAnimator
+                = ObjectAnimator.ofFloat(this, "progress", 0, progressNum + 20, progressNum);
+        progressAnimator.setDuration(1500);
+        progressAnimator.start();
     }
 
 
