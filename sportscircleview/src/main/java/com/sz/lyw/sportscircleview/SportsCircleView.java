@@ -34,6 +34,11 @@ public class SportsCircleView extends View {
         super(context, attrs, defStyleAttr);
     }
 
+    public void setProgressNum(float progressNum) {
+        if (progressNum < 0 || progressNum > 100)
+            return;
+        start(progressNum);
+    }
 
     public void start(float progressNum) {
 
